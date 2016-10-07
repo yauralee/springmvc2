@@ -17,4 +17,36 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+    <!--
+      mvc:default-servlet-handler 将在SpringMVC上下文中定义一个DefaultServletHttpRequestHandler,它会对进入
+      DefaultServletHttpRequestHandler的请求进行筛查，如果发现是没有经过映射的请求，就将该请求交由web应用服务器默认的
+      servlet处理，如果不是静态资源的请求，才由dispatcherServlet处理
+      一般web应用服务器默认的servlet名称都是default,若使用的web服务器的默认servlet名称不是default，
+      则需要通过default-servlet-name 属性显示指定
+    -->
+    <mvc:default-servlet-handler/>
+
+    <mvc:annotation-driven/>
+
+    <mvc:interceptors>
+        <!--配置自定义的拦截器-->
+        <bean class="com.liyu.spring.interceptors.FirstInterceptor"></bean>
+        <!--配置拦截器作用的路径，也可以用于配置不作用的路径(mvc:exclude-mapping)-->
+        <mvc:interceptor>
+            <mvc:mapping path="/emps"/>
+            <bean class="com.liyu.spring.interceptors.SecondInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <!--配置使用SimpleMappingExceptionResolver映射异常-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>

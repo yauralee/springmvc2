@@ -1,5 +1,7 @@
 package com.liyu.spring.entities;
 
+import java.util.Date;
+
 /**
  * Created by twcn on 10/4/16.
  */
@@ -10,6 +12,7 @@ public class Employee {
     private String email;
     private Integer gender;
     private Department department;
+//    private Date birth;
 
     public Employee(Integer id, String lastName, String email, Integer gender, Department department){
         this.id = id;
@@ -18,6 +21,20 @@ public class Employee {
         this.gender = gender;
         this.department = department;
     }
+    public Employee(){}
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+//
+//    public Date getBirth() {
+//        return birth;
+//    }
+//
+//    public void setBirth(Date birth) {
+//        this.birth = birth;
+//    }
 
     public void setDepartment(Department department) {
         this.department = department;

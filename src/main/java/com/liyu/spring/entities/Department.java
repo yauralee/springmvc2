@@ -13,6 +13,8 @@ public class Department {
         this.departmentName = departmentName;
     }
 
+    public Department(){}
+
     public void setId(Integer id) {
         this.id = id;
     }
